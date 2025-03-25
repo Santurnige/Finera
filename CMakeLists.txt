@@ -24,6 +24,7 @@ qt_add_qml_module(appFinera
     RESOURCES pages/icon/add.png pages/icon/chart.png pages/icon/rept.png pages/icon/statistic.png pages/icon/table.png pages/icon/trash.png
     QML_FILES pages/aboutPage.qml pages/addOrDelPage.qml pages/devPage.qml pages/settingsPage.qml pages/statisticPage.qml
     RESOURCES icon/about.png icon/addOrDel.png icon/appIcon.png icon/dev.png icon/home.png icon/menu.png icon/settings.png icon/statistic.png
+    RESOURCES icon/about.png icon/addOrDel.png icon/appIcon.png  icon/dev.png icon/home.png  icon/menu.png icon/settings.png icon/statistic.png
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
