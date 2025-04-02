@@ -1,12 +1,19 @@
-#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include<QQmlContext>
 #include<QtQml>
-#include"sqlmodel.h"
+#include"sqlmodelincome.h"
+#include"sqlmodelexpenses.h"
 #include<QApplication>
+#include<QFont>
+#include<QFontDatabase>
+#include"sqlmodeltarget.h"
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    app.setApplicationDisplayName("Finera");
+    app.setApplicationName("Finera");
 
 
     QQmlApplicationEngine engine;
@@ -20,9 +27,16 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
 
-    qmlRegisterType<SqlModel>("SqlModel", 1, 0, "SqlModel");
+
+
+    qmlRegisterType<SqlModelIncome>("SqlModelIncome", 1, 0, "SqlModelIncome");
+    qmlRegisterType<SqlModelExpenses>("SqlModelExpenses",1,0,"SqlModelExpenses");
+    qmlRegisterType<SqlModelTarget>("SqlModelTarget",1,0,"SqlModelTarget");
+
 
     engine.loadFromModule("Finera", "Main");
+
+
 
 
     return app.exec();

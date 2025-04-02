@@ -4,31 +4,51 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import Qt.labs.qmlmodels
 import "." as App
-import SqlModel
+import SqlModelIncome
+import SqlModelExpenses
+import SqlModelTarget
 
 
-Window {
+ApplicationWindow {
+
     id: mainWindow
     width: 360
     height: 820
     visible: true
     title: "Зарплата"
+    FontLoader { id: customFont; source: "font/Montserrat-Regular.ttf" }
+    font.family: customFont.name
+
+    property alias mainWindow:mainWindow
 
 
-    SqlModel{
-        id:sqlModel
+    SqlModelIncome{
+        id:sqlModelIncome
     }
 
-    property alias sqlMdl:sqlModel
+    SqlModelExpenses{
+        id:sqlModelExpenses
+    }
+    SqlModelTarget{
+        id:sqlModelTarget
+    }
+
+
+    property alias sqlModelIncome:sqlModelIncome
+    property alias sqlModelExpenses:sqlModelExpenses
+    property alias sqlModelTarget:sqlModelTarget
+
+    property alias customFont:customFont
+
 
     property bool menuStatus: true
 
     Material.theme: Material.Light
-    Material.accent: Material.Red
+    Material.accent: Material.Purple
 
     Rectangle{
         id:topMenu
-        color:"#00ffa7"
+        color:"#c86cf0"
         anchors.top: parent.top
         width:parent.width
         height:60
@@ -55,7 +75,8 @@ Window {
         Text {
             id:currentPage
             text: qsTr("Зарплата")
-            font.pixelSize: 24
+            font.pixelSize: 20
+            font.family: customFont.name
             anchors.centerIn: topMenu
         }
 
@@ -85,27 +106,32 @@ Window {
                 anchors.margins: 15
                 Rectangle{
                     id:widgetAll
-                    color:"#00ffa7"
+                    color:"#c86cf0"
+
+
+
                     height:90
                     width: parent.width
                     radius: 20
                     Text{
                         anchors.centerIn: parent
                         font.pixelSize: 15
-                        text: qsTr("Заработано За Все Время\n"+sqlModel.getSalaryAllTime());
+                        font.family: customFont.name
+                        text: qsTr("Заработано За Все Время\n"+sqlModelIncome.getIncomeAllTime());
                     }
                 }
 
                 Rectangle{
                     id:widgetMonth
-                    color:"#00ffa7"
+                    color:"#c86cf0"
                     height:90
                     width:parent.width
                     radius: 20
                     Text {
                         anchors.centerIn: parent
                         font.pixelSize: 15
-                        text: qsTr("Зредняя зарплата за день - \n"+sqlModel.getAverageValue())
+                        font.family: customFont.name
+                        text: qsTr("Зредняя зарплата за день - \n"+sqlModelIncome.getAverageValue())
                     }
 
                 }
@@ -134,29 +160,42 @@ Window {
                     source:"pages/addOrDelPage.qml"
                 }
                 ListElement{
-                    title:qsTr("Статистика")
-                    iconButton:"icon/statistic.png"
-                    source:"pages/statisticPage.qml"
+                    title:qsTr("Доходы")
+                    iconButton:"pages/icon/income.png"
+                    source:"pages/statisticIncomePage.qml"
+                }
+
+                ListElement{
+                    title:qsTr("Расходы")
+                    iconButton:"pages/icon/expenses.png"
+                    source:"pages/statisticExpensesPage.qml"
                 }
                 ListElement{
+                    title:qsTr("Цели")
+                    iconButton:"pages/icon/note.png"
+                    source:"pages/targetPage.qml"
+                }
+
+                /*ListElement{
                     title:qsTr("Настройки")
                     iconButton:"icon/settings.png"
                     source:"pages/settingsPage.qml"
-                }
+                }*/
                 ListElement{
                     title:qsTr("Для Разработчиков")
                     iconButton:"icon/dev.png"
                     source:"pages/devPage.qml"
                 }
-                ListElement{
+                /*ListElement{
                     title:qsTr("О")
                     iconButton:"icon/about.png"
                     source:"pages/aboutPage.qml"
-                }
+                }*/
             }
 
             delegate: ItemDelegate{
                 font.pixelSize: 16
+                font.family: customFont.name
                 width:listMenu.width
                 icon.source: iconButton
                 text: title
@@ -172,3 +211,7 @@ Window {
         }
     }
 }
+
+
+
+

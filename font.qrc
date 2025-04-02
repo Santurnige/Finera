@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>font/static/Montserrat-Black.ttf</file>
+        <file>font/static/Montserrat-BlackItalic.ttf</file>
+        <file>font/static/Montserrat-Bold.ttf</file>
+        <file>font/static/Montserrat-BoldItalic.ttf</file>
+        <file>font/static/Montserrat-ExtraBold.ttf</file>
+        <file>font/static/Montserrat-ExtraBoldItalic.ttf</file>
+        <file>font/static/Montserrat-ExtraLight.ttf</file>
+        <file>font/static/Montserrat-ExtraLightItalic.ttf</file>
+        <file>font/static/Montserrat-Italic.ttf</file>
+        <file>font/static/Montserrat-Light.ttf</file>
+        <file>font/static/Montserrat-LightItalic.ttf</file>
+        <file>font/static/Montserrat-Medium.ttf</file>
+        <file>font/static/Montserrat-MediumItalic.ttf</file>
+        <file>font/static/Montserrat-Regular.ttf</file>
+        <file>font/static/Montserrat-SemiBold.ttf</file>
+        <file>font/static/Montserrat-SemiBoldItalic.ttf</file>
+        <file>font/static/Montserrat-Thin.ttf</file>
+        <file>font/static/Montserrat-ThinItalic.ttf</file>
+    </qresource>
+</RCC>

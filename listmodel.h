@@ -9,7 +9,7 @@ class listModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit listModel(QObject *parent=nullptr,QStringList list=QStringList());
+    explicit listModel(QStringList list=QStringList());
     
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

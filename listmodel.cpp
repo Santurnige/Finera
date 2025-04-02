@@ -1,9 +1,6 @@
 #include "listmodel.h"
 
-listModel::listModel(QObject *parent, QStringList list):QAbstractListModel(parent),mainList(list)
-{
-
-}
+listModel::listModel(QStringList list):mainList(list){}
 
 int listModel::rowCount(const QModelIndex &parent) const
 {
