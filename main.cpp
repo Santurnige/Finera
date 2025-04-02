@@ -7,17 +7,14 @@
 #include<QFont>
 #include<QFontDatabase>
 #include"sqlmodeltarget.h"
+#include<QIcon>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
-    app.setApplicationDisplayName("Finera");
-    app.setApplicationName("Finera");
-
+    app.setWindowIcon(QIcon("icon/appIcon.png"));
 
     QQmlApplicationEngine engine;
-
 
     QObject::connect(
         &engine,

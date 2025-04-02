@@ -14,6 +14,7 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appFinera
     main.cpp
+    icon.rc
 )
 
 qt_add_qml_module(appFinera
@@ -39,6 +40,7 @@ qt_add_qml_module(appFinera
     QML_FILES pages/TargetElement.qml
     RESOURCES pages/icon/add.png pages/icon/chart.png pages/icon/expenses.png pages/icon/income.png pages/icon/note.png pages/icon/rept.png pages/icon/save.png pages/icon/statistic.png pages/icon/table.png pages/icon/trash.png
     RESOURCES pages/icon/note.png
+    RESOURCES applicationIcon.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
