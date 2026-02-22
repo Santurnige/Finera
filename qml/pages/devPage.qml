@@ -79,16 +79,6 @@ Page {
                         'Total' INTEGER,<br>
                         PRIMARY KEY('Id')<br>
                     );<br>
-                    <p>Таблица 2: Расход!</p><br>
-                    CREATE TABLE IF NOT EXISTS 'expenses' (<br>
-                        'Id' INTEGER NOT NULL UNIQUE,<br>
-                        'Year' INTEGER,<br>
-                        'Month' VARCHAR(15),<br>
-                        'Day' INTEGER,<br>
-                        'Expenses INTEGER,<br>
-                        'About' Text,<br>
-                        'PRIMARY' KEY('Id')<br>
-                    );<br>
                 ")
                 font.pixelSize: 17
                 font.family: customFont.name

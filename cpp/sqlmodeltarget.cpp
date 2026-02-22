@@ -1,13 +1,10 @@
-#include "sqlmodeltarget.h"
+#include "header/sqlmodeltarget.h"
 
+SqlModelTarget::SqlModelTarget()
+{
+    query = new QSqlQuery(main_sql);
 
-
-SqlModelTarget::SqlModelTarget() {
-
-
-    query=new QSqlQuery(main_sql);
-
-    model=new QSqlTableModel(this,main_sql);
+    model = new QSqlTableModel(this, main_sql);
     model->setTable("target");
 
     model->select();
@@ -27,8 +24,8 @@ QAbstractTableModel *SqlModelTarget::getModelTable() const
 bool SqlModelTarget::addSqlRequest(const QString &request)
 {
     bool result = query->exec(request);
-    if(!result){
-        qDebug() << "ERROR SQL query:"<< query->lastError().text();
+    if (!result) {
+        qDebug() << "ERROR SQL query:" << query->lastError().text();
     }
     model->select();
     return result;
@@ -60,4 +57,3 @@ QHash<int, QByteArray> SqlModelTarget::roleNames() const
 {
     return model->roleNames();
 }
-

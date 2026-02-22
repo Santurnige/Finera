@@ -1,16 +1,18 @@
-#include "sqlmodelincome.h"
+#include "header/sqlmodelincome.h"
 #include <QDebug>
 
-SqlModelIncome::SqlModelIncome() :_ApplicationEngine()
+SqlModelIncome::SqlModelIncome()
+    : _ApplicationEngine()
 {
-    query=new QSqlQuery(main_sql);
+    query = new QSqlQuery(main_sql);
 
     model = new QSqlTableModel(this, main_sql);
     model->setTable("income");
     model->select();
 }
 
-SqlModelIncome::~SqlModelIncome(){
+SqlModelIncome::~SqlModelIncome()
+{
     delete model;
     delete query;
 }
@@ -20,11 +22,11 @@ QAbstractTableModel *SqlModelIncome::getModelTable() const
     return model;
 }
 
-bool SqlModelIncome::addSqlRequest(const QString& request)
+bool SqlModelIncome::addSqlRequest(const QString &request)
 {
     bool result = query->exec(request);
-    if(!result){
-        qDebug() << "ERROR SQL query:"<< query->lastError().text();
+    if (!result) {
+        qDebug() << "ERROR SQL query:" << query->lastError().text();
     }
     model->select();
     return result;
@@ -47,18 +49,21 @@ int SqlModelIncome::getIncomeAllTime()
 // получаем подробную статистику
 QAbstractListModel *SqlModelIncome::getStatistic(int year)
 {
-
     QStringList listModel;
 
-    QString allTime = "Заработано за все время: " + QString::number(getIncomeAllTime()); // получаем зарплату за все время
+    QString allTime = "Заработано за все время: "
+                      + QString::number(getIncomeAllTime()); // получаем зарплату за все время
     listModel.append("<b>" + allTime + "<\\b>");
 
     QString averageValue = "Зредняя зарплата за день: " + QString::number(getAverageValue());
     listModel.append("<b>" + averageValue + "<\\b>");
 
-    QVariantMap monthStat = getStatisticYearChart(year, "income","Total"); // получаем ключ значение зарплаты за каждый месяц
+    QVariantMap monthStat
+        = getStatisticYearChart(year,
+                                "income",
+                                "Total"); // получаем ключ значение зарплаты за каждый месяц
 
-    for (const QString& el : monthStat.keys()) { // перебираем map
+    for (const QString &el : monthStat.keys()) { // перебираем map
         QString temp = el + ": " + monthStat[el].toString();
         listModel.append(temp);
     }

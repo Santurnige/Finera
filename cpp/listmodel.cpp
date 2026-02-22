@@ -1,10 +1,12 @@
-#include "listmodel.h"
+#include "header/listmodel.h"
 
-listModel::listModel(QStringList list):mainList(list){}
+listModel::listModel(QStringList list)
+    : mainList(list)
+{}
 
 int listModel::rowCount(const QModelIndex &parent) const
 {
-    if(parent.isValid()){
+    if (parent.isValid()) {
         return 0;
     }
     return mainList.size();

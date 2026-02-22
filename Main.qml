@@ -5,7 +5,6 @@ import QtQuick.Layouts
 import Qt.labs.qmlmodels
 import "." as App
 import SqlModelIncome
-import SqlModelExpenses
 import SqlModelTarget
 
 
@@ -25,17 +24,12 @@ ApplicationWindow {
     SqlModelIncome{
         id:sqlModelIncome
     }
-
-    SqlModelExpenses{
-        id:sqlModelExpenses
-    }
     SqlModelTarget{
         id:sqlModelTarget
     }
 
 
     property alias sqlModelIncome:sqlModelIncome
-    property alias sqlModelExpenses:sqlModelExpenses
     property alias sqlModelTarget:sqlModelTarget
 
     property alias customFont:customFont
@@ -47,6 +41,7 @@ ApplicationWindow {
     Material.accent: Material.Purple
 
     Rectangle{
+
         id:topMenu
         color:"#c86cf0"
         anchors.top: parent.top
@@ -56,15 +51,15 @@ ApplicationWindow {
         Button {
             id: menuButton
             icon.source:"icon/menu.png";
-            onClicked:{
-                if(menuStatus==true){
+            onClicked: {
+                if(menuStatus == true){
                     menuDrawer.open()
                 }
                 else{
-                    currentPage.text="Зарплата"
+                    currentPage.text = "Зарплата"
                     stackView.pop();
-                    menuStatus=true
-                    icon.source="icon/menu.png"
+                    menuStatus = true
+                    icon.source = "icon/menu.png"
                 }
             }
             anchors.left: parent.left
@@ -87,7 +82,7 @@ ApplicationWindow {
     Rectangle{
         anchors.top: topMenu.bottom
         width: mainWindow.width
-        height: mainWindow.height-topMenu.height
+        height: mainWindow.height - topMenu.height
 
         StackView{
             id:stackView
@@ -100,7 +95,7 @@ ApplicationWindow {
             id:mainView
 
             Column{
-                width: mainView.width-30
+                width: mainView.width - 30
                 spacing: 10
                 anchors.centerIn: mainView
                 anchors.margins: 15
@@ -117,7 +112,7 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         font.pixelSize: 15
                         font.family: customFont.name
-                        text: qsTr("Заработано За Все Время\n"+sqlModelIncome.getIncomeAllTime());
+                        text: qsTr("Заработано За Все Время\n" + sqlModelIncome.getIncomeAllTime());
                     }
                 }
 
@@ -131,14 +126,12 @@ ApplicationWindow {
                         anchors.centerIn: parent
                         font.pixelSize: 15
                         font.family: customFont.name
-                        text: qsTr("Зредняя зарплата за день - \n"+sqlModelIncome.getAverageValue())
+                        text: qsTr("Зредняя зарплата за день - \n" + sqlModelIncome.getAverageValue())
                     }
-
                 }
             }
         }
     }
-
 
 
 
@@ -157,40 +150,23 @@ ApplicationWindow {
                 ListElement{
                     title:qsTr("Управление Записями")
                     iconButton:"icon/addOrDel.png"
-                    source:"pages/addOrDelPage.qml"
+                    source:"qml/pages/addOrDelPage.qml"
                 }
                 ListElement{
                     title:qsTr("Доходы")
-                    iconButton:"pages/icon/income.png"
-                    source:"pages/statisticIncomePage.qml"
-                }
-
-                ListElement{
-                    title:qsTr("Расходы")
-                    iconButton:"pages/icon/expenses.png"
-                    source:"pages/statisticExpensesPage.qml"
+                    iconButton:"qml/pages/icon/income.png"
+                    source:"qml/pages/statisticIncomePage.qml"
                 }
                 ListElement{
                     title:qsTr("Цели")
-                    iconButton:"pages/icon/note.png"
-                    source:"pages/targetPage.qml"
+                    iconButton:"qml/pages/icon/note.png"
+                    source:"qml/pages/targetPage.qml"
                 }
-
-                /*ListElement{
-                    title:qsTr("Настройки")
-                    iconButton:"icon/settings.png"
-                    source:"pages/settingsPage.qml"
-                }*/
                 ListElement{
                     title:qsTr("Для Разработчиков")
                     iconButton:"icon/dev.png"
-                    source:"pages/devPage.qml"
+                    source:"qml/pages/devPage.qml"
                 }
-                /*ListElement{
-                    title:qsTr("О")
-                    iconButton:"icon/about.png"
-                    source:"pages/aboutPage.qml"
-                }*/
             }
 
             delegate: ItemDelegate{
@@ -203,9 +179,9 @@ ApplicationWindow {
                     menuDrawer.close()
 
                     stackView.push(source)
-                    currentPage.text=title
-                    menuStatus=false
-                    menuButton.icon.source="icon/home.png"
+                    currentPage.text = title
+                    menuStatus = false
+                    menuButton.icon.source = "icon/home.png"
                 }
             }
         }
